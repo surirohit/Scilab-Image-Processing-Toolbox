@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book [
+<!--Begin Entities-->
+<!ENTITY a2f2c02f9a9d20c7ebdb5c6fdf0a8b56e SYSTEM "/home/codestation/Documents/Scilab-Image-Processing-Toolbox-master/help/en_US/blur.xml">
+<!ENTITY ab56c9525ad2cacefb9c72e7f24c47c3d SYSTEM "/home/codestation/Documents/Scilab-Image-Processing-Toolbox-master/help/en_US/canny.xml">
+<!ENTITY a16ad411fa1715e448ac5ede99d9bd34d SYSTEM "/home/codestation/Documents/Scilab-Image-Processing-Toolbox-master/help/en_US/cornerEigenValAndVecs.xml">
+<!ENTITY ad7253a46a1703fe5ee7ff0f9df6c902c SYSTEM "/home/codestation/Documents/Scilab-Image-Processing-Toolbox-master/help/en_US/cornerHarris.xml">
+<!ENTITY a8833f55582aad0e204f68a274cfdd799 SYSTEM "/home/codestation/Documents/Scilab-Image-Processing-Toolbox-master/help/en_US/filter2D.xml">
+<!ENTITY ae5f1c8fb297a744133609af1a80c1523 SYSTEM "/home/codestation/Documents/Scilab-Image-Processing-Toolbox-master/help/en_US/gaussianblur.xml">
+<!ENTITY a0114235f93005218314205a71fbf0f60 SYSTEM "/home/codestation/Documents/Scilab-Image-Processing-Toolbox-master/help/en_US/getTextSize.xml">
+<!ENTITY a76aa36bd77d97ddbffd1651a9734cc13 SYSTEM "/home/codestation/Documents/Scilab-Image-Processing-Toolbox-master/help/en_US/houghlines.xml">
+<!ENTITY a40f96397cf6bb09d6a91d9465c169334 SYSTEM "/home/codestation/Documents/Scilab-Image-Processing-Toolbox-master/help/en_US/houghlinesp.xml">
+<!ENTITY ae3b1b6c28fe43f5cc6c19abfbcd6f694 SYSTEM "/home/codestation/Documents/Scilab-Image-Processing-Toolbox-master/help/en_US/im2double.xml">
+<!ENTITY a2027e23b8746941f7fa5c5edd7754298 SYSTEM "/home/codestation/Documents/Scilab-Image-Processing-Toolbox-master/help/en_US/imcontrast.xml">
+<!ENTITY a3bb23de421a0699ce01e0e4c380c0655 SYSTEM "/home/codestation/Documents/Scilab-Image-Processing-Toolbox-master/help/en_US/imcrop.xml">
+<!ENTITY ae9584a5329b4592f63e2909152b5a0b7 SYSTEM "/home/codestation/Documents/Scilab-Image-Processing-Toolbox-master/help/en_US/imread.xml">
+<!ENTITY af3121f9e8fccfc6452827f145ac04621 SYSTEM "/home/codestation/Documents/Scilab-Image-Processing-Toolbox-master/help/en_US/imresize.xml">
+<!ENTITY a685a17fa65f8d11f755b1b89c295c93e SYSTEM "/home/codestation/Documents/Scilab-Image-Processing-Toolbox-master/help/en_US/imsharpen.xml">
+<!ENTITY a1cbf84bcd47d072aed8692de70d4ee19 SYSTEM "/home/codestation/Documents/Scilab-Image-Processing-Toolbox-master/help/en_US/imwrite.xml">
+<!ENTITY aeb4290d3dc2a0861416c42daec59a874 SYSTEM "/home/codestation/Documents/Scilab-Image-Processing-Toolbox-master/help/en_US/montage.xml">
+<!ENTITY a1fb4058e7ca1d64446878a789cf1cd5d SYSTEM "/home/codestation/Documents/Scilab-Image-Processing-Toolbox-master/help/en_US/undistort.xml">
+<!--End Entities-->
+]>
+<book version="5.0-subset Scilab" xml:lang="en_US"
+      xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:svg="http://www.w3.org/2000/svg"
+      xmlns:mml="http://www.w3.org/1998/Math/MathML"
+      xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:db="http://docbook.org/ns/docbook">
+  <info xml:id='image_processing_toolbox_manual'>
+    <title>Image Processing Toolbox</title>
+  </info>
+
+<part xml:id='section_ef602accd347244c1dde4e3c8c67ad87'>
+<title>Image Processing Toolbox</title>
+&a2f2c02f9a9d20c7ebdb5c6fdf0a8b56e;
+&ab56c9525ad2cacefb9c72e7f24c47c3d;
+&a16ad411fa1715e448ac5ede99d9bd34d;
+&ad7253a46a1703fe5ee7ff0f9df6c902c;
+&a8833f55582aad0e204f68a274cfdd799;
+&ae5f1c8fb297a744133609af1a80c1523;
+&a0114235f93005218314205a71fbf0f60;
+&a76aa36bd77d97ddbffd1651a9734cc13;
+&a40f96397cf6bb09d6a91d9465c169334;
+&ae3b1b6c28fe43f5cc6c19abfbcd6f694;
+&a2027e23b8746941f7fa5c5edd7754298;
+&a3bb23de421a0699ce01e0e4c380c0655;
+&ae9584a5329b4592f63e2909152b5a0b7;
+&af3121f9e8fccfc6452827f145ac04621;
+&a685a17fa65f8d11f755b1b89c295c93e;
+&a1cbf84bcd47d072aed8692de70d4ee19;
+&aeb4290d3dc2a0861416c42daec59a874;
+&a1fb4058e7ca1d64446878a789cf1cd5d;
+</part>
+</book>
