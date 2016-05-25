@@ -1,7 +1,7 @@
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
 names = [	
-			"imread","opencv_imread";
+			//"imread","opencv_imread";
      		//"blur","opencv_blur";
             //"arrowedline","opencv_arrowedline";
             //"canny","opencv_canny";
@@ -53,14 +53,15 @@ names = [
             //"houghlinesp","opencv_houghlinesp";
             //"demosaic", "opencv_demosaic";
             //"imfindcircles", "opencv_imfindcircles";
-	    //"detectHarrisFeatures", "opencv_detectHarrisFeatures";
-        //"detectMinEigenFeatures", "opencv_detectMinEigenFeatures";
-        //"corner","opencv_corner";
-	"ocr","opencv_ocr";
+	        //"detectHarrisFeatures", "opencv_detectHarrisFeatures";
+            //"detectMinEigenFeatures", "opencv_detectMinEigenFeatures";
+            //"corner","opencv_corner";
+	        //"ocr","opencv_ocr";
+            "imageSet","opencv_imageSet";
 		];
 
 files = [
-			"opencv_imread.cpp",
+			//"opencv_imread.cpp",
      		//"opencv_blur.cpp",
             //"opencv_arrowedline.cpp",
             //"opencv_canny.cpp",
@@ -112,10 +113,11 @@ files = [
             //"opencv_houghlinesp.cpp",
             //"opencv_demosaic.cpp",
             //"opencv_imfindcircles.cpp",
-	    //"opencv_detectHarrisFeatures.cpp",
-        //"opencv_detectMinEigenFeatures.cpp",
-        //"opencv_corner.cpp",
-	"opencv_ocr.cpp"
+	        //"opencv_detectHarrisFeatures.cpp",
+            //"opencv_detectMinEigenFeatures.cpp",
+            //"opencv_corner.cpp",
+	        //"opencv_ocr.cpp"
+            "opencv_imageSet.cpp"
 		];
 
 function builder_gw_cpp()

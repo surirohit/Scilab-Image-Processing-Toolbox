@@ -10,8 +10,7 @@ if bOK then
   ulink(ilib);
 end
 //
-list_functions = [ 'imread';
-                   'ocr';
+list_functions = [ 'imageSet';
 ];
 addinter(libskeleton_imagepr_path + filesep() + 'libskeleton_imageprocessing' + getdynlibext(), 'libskeleton_imageprocessing', list_functions);
 // remove temp. variables on stack

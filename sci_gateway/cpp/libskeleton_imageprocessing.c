@@ -6,11 +6,9 @@ extern "C" {
 #include <api_scilab.h>
 #include <MALLOC.h>
 static int direct_gateway(char *fname,void F(void)) { F();return 0;};
-extern Gatefunc opencv_imread;
-extern Gatefunc opencv_ocr;
+extern Gatefunc opencv_imageSet;
 static GenericTable Tab[]={
-  {(Myinterfun)sci_gateway_without_putlhsvar,opencv_imread,"imread"},
-  {(Myinterfun)sci_gateway_without_putlhsvar,opencv_ocr,"ocr"},
+  {(Myinterfun)sci_gateway_without_putlhsvar,opencv_imageSet,"imageSet"},
 };
  
 int C2F(libskeleton_imageprocessing)()
