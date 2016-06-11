@@ -10,7 +10,14 @@ if bOK then
   ulink(ilib);
 end
 //
-list_functions = [ 'imageSet';
+list_functions = [ 'imread';
+                   'imageSet';
+                   'partition';
+                   'trainImageCategoryClassifier';
+                   'bagOfFeatures';
+                   'imageCategoryClassifier';
+                   'evaluate';
+                   'detectCheckerboardPoints';
 ];
 addinter(libskeleton_imagepr_path + filesep() + 'libskeleton_imageprocessing' + getdynlibext(), 'libskeleton_imageprocessing', list_functions);
 // remove temp. variables on stack

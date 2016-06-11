@@ -1,7 +1,7 @@
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
-names = [	
-			//"imread","opencv_imread";
+names = [
+			"imread","opencv_imread";
      		//"blur","opencv_blur";
             //"arrowedline","opencv_arrowedline";
             //"canny","opencv_canny";
@@ -58,10 +58,16 @@ names = [
             //"corner","opencv_corner";
 	        //"ocr","opencv_ocr";
             "imageSet","opencv_imageSet";
+            "partition","opencv_partition";
+			"trainImageCategoryClassifier","opencv_trainImageCategoryClassifier";
+			"bagOfFeatures","opencv_bagOfFeatures";
+			"imageCategoryClassifier","opencv_imageCategoryClassifier";
+			"evaluate","opencv_evaluate";
+			"detectCheckerboardPoints","opencv_detectCheckerboardPoints";
 		];
 
 files = [
-			//"opencv_imread.cpp",
+			"opencv_imread.cpp",
      		//"opencv_blur.cpp",
             //"opencv_arrowedline.cpp",
             //"opencv_canny.cpp",
@@ -116,8 +122,14 @@ files = [
 	        //"opencv_detectHarrisFeatures.cpp",
             //"opencv_detectMinEigenFeatures.cpp",
             //"opencv_corner.cpp",
-	        //"opencv_ocr.cpp"
-            "opencv_imageSet.cpp"
+	        //"opencv_ocr.cpp",
+            "opencv_imageSet.cpp",
+            "opencv_partition.cpp",
+			"opencv_trainImageCategoryClassifier.cpp",
+			"opencv_bagOfFeatures.cpp",
+			"opencv_imageCategoryClassifier.cpp",
+			"opencv_evaluate.cpp",
+			"opencv_detectCheckerboardPoints.cpp"
 		];
 
 function builder_gw_cpp()
@@ -127,7 +139,7 @@ function builder_gw_cpp()
 tbx_build_gateway("skeleton_imageprocessing", ..
 	names, ..
     files, ..
-    get_absolute_file_path("builder_gateway_cpp.sce"),[],["-L/usr/local/lib -lopencv_core -L/usr/local/lib -lopencv_highgui -L/usr/local/lib -lopencv_imgproc -L/usr/local/lib -ltesseract -L/usr/local/lib -llept"],["-I/usr/include/scilab -I/usr/include/opencv -I/usr/include/opencv2 -I/usr/include/tesseract"],"g++ ");
+    get_absolute_file_path("builder_gateway_cpp.sce"),[],["-L/usr/local/lib -lopencv_core -L/usr/local/lib -lopencv_highgui -L/usr/local/lib -lopencv_imgproc -L/usr/local/lib -lopencv_calib3d -L/usr/local/lib -ltesseract -L/usr/local/lib -llept -L/usr/local/lib -lopencv_nonfree -L/usr/local/lib -lopencv_ml"],["-I/usr/include/scilab -I/usr/include/opencv -I/usr/include/opencv2 -I/usr/include/tesseract"],"g++ ");
 endfunction
 
 builder_gw_cpp();
