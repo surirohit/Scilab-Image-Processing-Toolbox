@@ -18,7 +18,7 @@ extern "C"
     #include <localization.h>
     #include <sciprint.h>
     #include "../common.h"
-    int retrieveImageFromList(Mat &image,int *piAddr)
+    int retrieveImageFromAddress(Mat &image,int *piAddr)
     {
         SciErr sciErr;
         int iRows=0,iCols=0,i,j,k=0;
@@ -557,7 +557,7 @@ extern "C"
                 }
                 if(isIntegerType(pvApiCtx,piChild) || isDoubleType(pvApiCtx,piChild))
                 {
-                    retrieveImageFromList(inp,piAddr);
+                    retrieveImageFromAddress(inp,piAddr);
                     inputs.push_back(inp);
                 }
                 else
@@ -576,7 +576,7 @@ extern "C"
                             printError(&sciErr, 0);
                             return 0;
                         }
-                        retrieveImageFromList(inp,piChild);
+                        retrieveImageFromAddress(inp,piChild);
                         inputs.push_back(inp);
                     }
                 }
