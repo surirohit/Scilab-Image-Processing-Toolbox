@@ -11,7 +11,7 @@ function[] =imshow(Image)         //retrieving list and creating 3 dimensional m
      [NumberOfRows NumberOfColumns NumberOfChannels] = size(z);
      NumberOfPixels = NumberOfRows * NumberOfColumns;
      MaxGrayValue = 2 ^ 8 - 1;
-     ColorMap = double(matrix(z, NumberOfPixels, NumberOfChannels)) ...
+     ColorMap = double(matrix(Image, NumberOfPixels, NumberOfChannels)) ...
            / MaxGrayValue;
      Img = matrix(1 : NumberOfPixels, NumberOfRows, NumberOfColumns);
      elseif dimensions==1 then

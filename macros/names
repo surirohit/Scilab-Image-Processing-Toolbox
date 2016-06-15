@@ -1,2 +1,4 @@
 imshow
+selectStrongestBbox
 show
+trainCascaseObjectDetector
