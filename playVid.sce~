@@ -1,4 +1,4 @@
-f1=scf(1);
+// f1=scf(1);
 // f2=scf(2);
 if(hasFrame(a))
 	frame = readFrame(a);
@@ -11,16 +11,35 @@ if(hasFrame(a))
      	MaxGrayValue = 2 ^ 8 - 1;
      	ColorMap = double(matrix(z, NumberOfPixels, NumberOfChannels))/ MaxGrayValue;
      	Img = matrix(1 : NumberOfPixels, NumberOfRows, NumberOfColumns);
+     FigureHandle = gcf();
+     FigureHandle.color_map = ColorMap
+     FigureHandle.background = -2; // sets the background to white
+     FigureHandle.figure_name = "Title";
+     [NumberOfRows NumberOfColumns] = size(Img);
+     FigureHandle.axes_size = [NumberOfColumns NumberOfRows];
+delete(gca());
+Diagram = gca();     
+	Diagram.data_bounds = [1, 1; NumberOfColumns, NumberOfRows];
+     Diagram.axes_visible = ['off' 'off' 'off'];
+     Diagram.isoview = 'on';
+     Options = '082'; // Box is drawn around image.
 end
 while hasFrame(a)
     stacksize('max');
-    scf(f1);
     frame = readFrame(a);
     z(:,:,1)=matrix(frame(1),c,d);; 
     z(:,:,2)=matrix(frame(2),c,d); 
     z(:,:,3)=matrix(frame(3),c,d);
     ColorMap = double(matrix(z, NumberOfPixels, NumberOfChannels))/ MaxGrayValue;
-	show(Img,ColorMap);
+	drawlater();
+	delete(gca());
+	Diagram = gca();     
+	Diagram.data_bounds = [1, 1; NumberOfColumns, NumberOfRows];
+     Diagram.axes_visible = ['off' 'off' 'off'];
+     Diagram.isoview = 'on';
+     Options = '082';
+     Matplot(Img, Options);
+     drawnow();
     // fg_mask = readForegroundMask(frame);
     // scf(f2);
     // imshow(fg_mask);

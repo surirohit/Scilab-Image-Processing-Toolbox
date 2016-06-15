@@ -18,6 +18,11 @@ list_functions = [ 'imread';
                    'imageCategoryClassifier';
                    'evaluate';
                    'detectCheckerboardPoints';
+                   'ForegroundDetector';
+                   'VideoReader';
+                   'hasFrame';
+                   'readFrame';
+                   'readForegroundMask';
 ];
 addinter(libskeleton_imagepr_path + filesep() + 'libskeleton_imageprocessing' + getdynlibext(), 'libskeleton_imageprocessing', list_functions);
 // remove temp. variables on stack

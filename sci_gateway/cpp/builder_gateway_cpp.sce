@@ -66,6 +66,10 @@ names = [
 			"detectCheckerboardPoints","opencv_detectCheckerboardPoints";
 			"ForegroundDetector","opencv_ForegroundDetector";
 			"VideoReader","opencv_VideoReader";
+			"hasFrame","has_frame";
+			"readFrame","read_frame";
+			"readForegroundMask","opencv_readForegroundMask";
+
 		];
 
 files = [
@@ -133,7 +137,7 @@ files = [
 			"opencv_evaluate.cpp",
 			"opencv_detectCheckerboardPoints.cpp",
 			"opencv_ForegroundDetector.cpp",
-			"opencv_VideoReader.cpp"
+			"opencv_VideoReader.cpp",
 		];
 
 function builder_gw_cpp()
@@ -143,7 +147,7 @@ function builder_gw_cpp()
 tbx_build_gateway("skeleton_imageprocessing", ..
 	names, ..
     files, ..
-    get_absolute_file_path("builder_gateway_cpp.sce"),[],["-L/usr/local/lib -lopencv_core -L/usr/local/lib -lopencv_highgui -L/usr/local/lib -lopencv_imgproc -L/usr/local/lib -lopencv_calib3d -L/usr/local/lib -ltesseract -L/usr/local/lib -llept -L/usr/local/lib -lopencv_nonfree -L/usr/local/lib -lopencv_ml"],["-I/usr/include/scilab -I/usr/include/opencv -I/usr/include/opencv2 -I/usr/include/tesseract"],"g++ ");
+    get_absolute_file_path("builder_gateway_cpp.sce"),[],["-L/usr/local/lib -lopencv_core -L/usr/local/lib -lopencv_highgui -L/usr/local/lib -lopencv_imgproc -L/usr/local/lib -lopencv_calib3d -L/usr/local/lib -lopencv_video -L/usr/local/lib -ltesseract -L/usr/local/lib -llept -L/usr/local/lib -lopencv_nonfree -L/usr/local/lib -lopencv_ml"],["-I/usr/include/scilab -I/usr/include/opencv -I/usr/include/opencv2 -I/usr/include/tesseract"],"g++ ");
 endfunction
 
 builder_gw_cpp();
