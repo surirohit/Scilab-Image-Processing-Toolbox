@@ -1,7 +1,7 @@
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
 names = [
-			"imread","opencv_imread";
+			"opencv_imread","opencv_imread";
      		//"blur","opencv_blur";
             //"arrowedline","opencv_arrowedline";
             //"canny","opencv_canny";

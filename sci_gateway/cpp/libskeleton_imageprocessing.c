@@ -20,7 +20,7 @@ extern Gatefunc has_frame;
 extern Gatefunc read_frame;
 extern Gatefunc opencv_readForegroundMask;
 static GenericTable Tab[]={
-  {(Myinterfun)sci_gateway_without_putlhsvar,opencv_imread,"imread"},
+  {(Myinterfun)sci_gateway_without_putlhsvar,opencv_imread,"opencv_imread"},
   {(Myinterfun)sci_gateway_without_putlhsvar,opencv_imageSet,"imageSet"},
   {(Myinterfun)sci_gateway_without_putlhsvar,opencv_partition,"partition"},
   {(Myinterfun)sci_gateway_without_putlhsvar,opencv_trainImageCategoryClassifier,"trainImageCategoryClassifier"},

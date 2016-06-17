@@ -10,7 +10,7 @@ if bOK then
   ulink(ilib);
 end
 //
-list_functions = [ 'imread';
+list_functions = [ 'opencv_imread';
                    'imageSet';
                    'partition';
                    'trainImageCategoryClassifier';

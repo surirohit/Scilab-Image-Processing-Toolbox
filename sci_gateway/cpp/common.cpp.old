@@ -3,7 +3,7 @@ Author : Sukul Bagai
 ***************************************************/
 
 //takes the matrix type as parameter and returns a string of the type
-string type2str(int type) 
+string type2str(int type)
 {
     string r;
     uchar depth = type & CV_MAT_DEPTH_MASK;
@@ -46,21 +46,20 @@ int retrieveImage(Mat &image,int pos)
     int *piAddrChild = NULL;
     int iPrec = 0,iItem = 0;
 
-    //retrieving number of items in the list and type of data(integer/float)
     sciErr = getVarAddressFromPosition(pvApiCtx,pos,&piAddr);
-    if(sciErr.iErr)   
+    if(sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 0;
     }
     sciErr = getListItemAddress(pvApiCtx,piAddr,1,&piAddrChild);
-    if(sciErr.iErr)   
+    if(sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 0;
     }
     sciErr = getListItemNumber(pvApiCtx,piAddr,&iItem);
-    if(sciErr.iErr)   
+    if(sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 0;
@@ -83,42 +82,22 @@ int retrieveImage(Mat &image,int pos)
                 {
                     unsigned char *pstDataR = NULL;
                     unsigned char *pstDataG = NULL;
-                    unsigned char *pstDataB = NULL; 
-                    sciErr = getVarAddressFromPosition(pvApiCtx,pos,&piAddr);
-                    if(sciErr.iErr)   
-                    {
-                        printError(&sciErr, 0);
-                        return 0;
-                    }
-                    //retrive the matrix of the R values   
+                    unsigned char *pstDataB = NULL;
+                    //retrive the matrix of the R values
                     sciErr = getMatrixOfUnsignedInteger8InList(pvApiCtx, piAddr, 1, &iRows, &iCols, &pstDataR);
                     if(sciErr.iErr)
                     {
                         printError(&sciErr, 0);
                         return 0;
                     }
-                    //retrive address of the list
-                    sciErr = getVarAddressFromPosition(pvApiCtx,pos,&piAddr);
-                    if(sciErr.iErr)   
-                    {
-                        printError(&sciErr, 0);
-                        return 0;
-                    }   
-                    //retrive the matrix of the G values 
+                    //retrive the matrix of the G values
                     sciErr = getMatrixOfUnsignedInteger8InList(pvApiCtx, piAddr, 2, &iRows, &iCols, &pstDataG);
                     if(sciErr.iErr)
                     {
                         printError(&sciErr, 0);
                         return 0;
                     }
-                    //retrive address of the list
-                    sciErr = getVarAddressFromPosition(pvApiCtx,pos,&piAddr);
-                    if(sciErr.iErr)   
-                    {
-                        printError(&sciErr, 0);
-                        return 0;
-                    }   
-                    //retrive the matrix of the B values 
+                    //retrive the matrix of the B values
                     sciErr = getMatrixOfUnsignedInteger8InList(pvApiCtx, piAddr, 3, &iRows, &iCols, &pstDataB);
                     if(sciErr.iErr)
                     {
@@ -144,20 +123,14 @@ int retrieveImage(Mat &image,int pos)
                 else
                 {
                     unsigned char *pstDataR = NULL;
-                    sciErr = getVarAddressFromPosition(pvApiCtx,pos,&piAddr);
-                    if(sciErr.iErr)   
-                    {
-                        printError(&sciErr, 0);
-                        return 0;
-                    }
-                    //retrive the matrix of the R values   
+                    //retrive the matrix of the R values
                     sciErr = getMatrixOfUnsignedInteger8InList(pvApiCtx, piAddr, 1, &iRows, &iCols, &pstDataR);
                     if(sciErr.iErr)
                     {
                         printError(&sciErr, 0);
                         return 0;
                     }
-                    
+
                     //creating an image matrix with the no. of rows and columns we retrieved, and assigning it to be of the form 8-bit unsinged integers
                     image = Mat(iRows,iCols,CV_8UC1);
 
@@ -176,41 +149,21 @@ int retrieveImage(Mat &image,int pos)
                     short unsigned int *pstDataR = NULL;
                     short unsigned int *pstDataG = NULL;
                     short unsigned int *pstDataB = NULL;
-                    sciErr = getVarAddressFromPosition(pvApiCtx,pos,&piAddr);
-                    if(sciErr.iErr)   
-                    {
-                        printError(&sciErr, 0);
-                        return 0;
-                    }
-                    //retrive the matrix of the R values   
+                    //retrive the matrix of the R values
                     sciErr = getMatrixOfUnsignedInteger16InList(pvApiCtx, piAddr, 1, &iRows, &iCols, &pstDataR);
                     if(sciErr.iErr)
                     {
                         printError(&sciErr, 0);
                         return 0;
                     }
-                    //retrive address of the list
-                    sciErr = getVarAddressFromPosition(pvApiCtx,pos,&piAddr);
-                    if(sciErr.iErr)   
-                    {
-                        printError(&sciErr, 0);
-                        return 0;
-                    }   
-                    //retrive the matrix of the G values 
+                    //retrive the matrix of the G values
                     sciErr = getMatrixOfUnsignedInteger16InList(pvApiCtx, piAddr, 2, &iRows, &iCols, &pstDataG);
                     if(sciErr.iErr)
                     {
                         printError(&sciErr, 0);
                         return 0;
                     }
-                    //retrive address of the list
-                    sciErr = getVarAddressFromPosition(pvApiCtx,pos,&piAddr);
-                    if(sciErr.iErr)   
-                    {
-                        printError(&sciErr, 0);
-                        return 0;
-                    }   
-                    //retrive the matrix of the B values 
+                    //retrive the matrix of the B values
                     sciErr = getMatrixOfUnsignedInteger16InList(pvApiCtx, piAddr, 3, &iRows, &iCols, &pstDataB);
                     if(sciErr.iErr)
                     {
@@ -237,20 +190,14 @@ int retrieveImage(Mat &image,int pos)
                 else
                 {
                     short unsigned int *pstDataR = NULL;
-                    sciErr = getVarAddressFromPosition(pvApiCtx,pos,&piAddr);
-                    if(sciErr.iErr)   
-                    {
-                        printError(&sciErr, 0);
-                        return 0;
-                    }
-                    //retrive the matrix of the R values   
+                    //retrive the matrix of the R values
                     sciErr = getMatrixOfUnsignedInteger16InList(pvApiCtx, piAddr, 1, &iRows, &iCols, &pstDataR);
                     if(sciErr.iErr)
                     {
                         printError(&sciErr, 0);
                         return 0;
                     }
-                    
+
                     //creating an image matrix with the no. of rows and columns we retrieved, and assigning it to be of the form 8-bit unsinged integers
                     image = Mat(iRows,iCols,CV_16UC1);
 
@@ -269,41 +216,21 @@ int retrieveImage(Mat &image,int pos)
                     short int *pstDataR = NULL;
                     short int *pstDataG = NULL;
                     short int *pstDataB = NULL;
-                    sciErr = getVarAddressFromPosition(pvApiCtx,pos,&piAddr);
-                    if(sciErr.iErr)   
-                    {
-                        printError(&sciErr, 0);
-                        return 0;
-                    }
-                    //retrive the matrix of the R values   
+                    //retrive the matrix of the R values
                     sciErr = getMatrixOfInteger16InList(pvApiCtx, piAddr, 1, &iRows, &iCols, &pstDataR);
                     if(sciErr.iErr)
                     {
                         printError(&sciErr, 0);
                         return 0;
                     }
-                    //retrive address of the list
-                    sciErr = getVarAddressFromPosition(pvApiCtx,pos,&piAddr);
-                    if(sciErr.iErr)   
-                    {
-                        printError(&sciErr, 0);
-                        return 0;
-                    }   
-                    //retrive the matrix of the G values 
+                    //retrive the matrix of the G values
                     sciErr = getMatrixOfInteger16InList(pvApiCtx, piAddr, 2, &iRows, &iCols, &pstDataG);
                     if(sciErr.iErr)
                     {
                         printError(&sciErr, 0);
                         return 0;
                     }
-                    //retrive address of the list
-                    sciErr = getVarAddressFromPosition(pvApiCtx,pos,&piAddr);
-                    if(sciErr.iErr)   
-                    {
-                        printError(&sciErr, 0);
-                        return 0;
-                    }   
-                    //retrive the matrix of the B values 
+                    //retrive the matrix of the B values
                     sciErr = getMatrixOfInteger16InList(pvApiCtx, piAddr, 3, &iRows, &iCols, &pstDataB);
                     if(sciErr.iErr)
                     {
@@ -329,20 +256,14 @@ int retrieveImage(Mat &image,int pos)
                 else
                 {
                     short int *pstDataR = NULL;
-                    sciErr = getVarAddressFromPosition(pvApiCtx,pos,&piAddr);
-                    if(sciErr.iErr)   
-                    {
-                        printError(&sciErr, 0);
-                        return 0;
-                    }
-                    //retrive the matrix of the R values   
+                    //retrive the matrix of the R values
                     sciErr = getMatrixOfInteger16InList(pvApiCtx, piAddr, 1, &iRows, &iCols, &pstDataR);
                     if(sciErr.iErr)
                     {
                         printError(&sciErr, 0);
                         return 0;
                     }
-                    
+
                     //creating an image matrix with the no. of rows and columns we retrieved, and assigning it to be of the form 8-bit unsinged integers
                     image = Mat(iRows,iCols,CV_16SC1);
 
@@ -363,41 +284,21 @@ int retrieveImage(Mat &image,int pos)
             double *pstDataR = NULL;
             double *pstDataG = NULL;
             double *pstDataB = NULL;
-            sciErr = getVarAddressFromPosition(pvApiCtx,pos,&piAddr);
-            if(sciErr.iErr)   
-            {
-                printError(&sciErr, 0);
-                return 0;
-            }
-            //retrive the matrix of the R values   
+            //retrive the matrix of the R values
             sciErr = getMatrixOfDoubleInList(pvApiCtx, piAddr, 1, &iRows, &iCols, &pstDataR);
             if(sciErr.iErr)
             {
                 printError(&sciErr, 0);
                 return 0;
             }
-            //retrive address of the list
-            sciErr = getVarAddressFromPosition(pvApiCtx,pos,&piAddrChild);
-            if(sciErr.iErr)   
-            {
-                printError(&sciErr, 0);
-                return 0;
-            }               
-            //retrive the matrix of the G values 
+            //retrive the matrix of the G values
             sciErr = getMatrixOfDoubleInList(pvApiCtx, piAddr, 2, &iRows, &iCols, &pstDataG);
             if(sciErr.iErr)
             {
                 printError(&sciErr, 0);
                 return 0;
             }
-            //retrive address of the list
-            sciErr = getVarAddressFromPosition(pvApiCtx,pos,&piAddrChild);
-            if(sciErr.iErr)   
-            {
-                printError(&sciErr, 0);
-                return 0;
-            }   
-            //retrive the matrix of the B values 
+            //retrive the matrix of the B values
             sciErr = getMatrixOfDoubleInList(pvApiCtx, piAddr, 3, &iRows, &iCols, &pstDataB);
             if(sciErr.iErr)
             {
@@ -423,13 +324,7 @@ int retrieveImage(Mat &image,int pos)
         else
         {
             double *pstDataR = NULL;
-            sciErr = getVarAddressFromPosition(pvApiCtx,pos,&piAddr);
-            if(sciErr.iErr)   
-            {
-                printError(&sciErr, 0);
-                return 0;
-            }
-            //retrive the matrix of the R values   
+            //retrive the matrix of the R values
             sciErr = getMatrixOfDoubleInList(pvApiCtx, piAddr, 1, &iRows, &iCols, &pstDataR);
             if(sciErr.iErr)
             {
@@ -472,7 +367,7 @@ int returnImage(char *checker,Mat img,int pos)
         sciErr = createList(pvApiCtx, nbInputArgument(pvApiCtx) + pos, 1, &piAddrNew);
     if(sciErr.iErr)
     {
-       printError(&sciErr, 0);           
+       printError(&sciErr, 0);
        return 0;
     }
     if(strcmp(checker,"8U")==0) //for Unsigned Integer 8
@@ -528,7 +423,7 @@ int returnImage(char *checker,Mat img,int pos)
         {
             //Since we need to pass a single pointer as an arguement, for a 2-D matrix, we define it in this manner
             unsigned char *r = (unsigned char *)malloc(img.rows * img.cols * sizeof(unsigned char));
-            
+
             //The next block of code retrieves the image colour values at a specified pixel, and assigns it to the matrices
             for(i=0;i<img.rows;i++)
                 for(j=0;j<img.cols;j++)
@@ -598,7 +493,7 @@ int returnImage(char *checker,Mat img,int pos)
         {
             //Since we need to pass a single pointer as an arguement, for a 2-D matrix, we define it in this manner
             short unsigned int *r = (short unsigned int *)malloc(img.rows * img.cols * sizeof(short unsigned int));
-            
+
             //The next block of code retrieves the image colour values at a specified pixel, and assigns it to the matrices
             for(i=0;i<img.rows;i++)
                 for(j=0;j<img.cols;j++)
@@ -667,7 +562,7 @@ int returnImage(char *checker,Mat img,int pos)
         {
             //Since we need to pass a single pointer as an arguement, for a 2-D matrix, we define it in this manner
             short int *r = (short int *)malloc(img.rows * img.cols * sizeof(short int));
-            
+
             //The next block of code retrieves the image colour values at a specified pixel, and assigns it to the matrices
             for(i=0;i<img.rows;i++)
                 for(j=0;j<img.cols;j++)
@@ -735,7 +630,7 @@ int returnImage(char *checker,Mat img,int pos)
         {
             //Since we need to pass a single pointer as an arguement, for a 2-D matrix, we define it in this manner
             int *r = (int *)malloc(img.rows * img.cols * sizeof(int));
-            
+
             //The next block of code retrieves the image colour values at a specified pixel, and assigns it to the matrices
             for(i=0;i<img.rows;i++)
                 for(j=0;j<img.cols;j++)
@@ -886,5 +781,5 @@ int returnImage(char *checker,Mat img,int pos)
             }
         }
     }
-    
+
 }
