@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from detectCheckerboardPoints.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="detectCheckerboardPoints" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>detectCheckerboardPoints</refname>
+    <refpurpose>This function is used to detect a checkerboard pattern in an image.</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Calling Sequence</title>
+   <synopsis>
+   [imagePoints boardSize] = detectCheckerboardPoints(I);
+   [imagePoints boardSize imagesUsed] = detectCheckerboardPoints(imageFileNames);
+   [imagePoints boardSize imagesUsed] = detectCheckerboardPoints(images);
+   [imagePoints boardSize imagesUsed] = detectCheckerboardPoints(imageFileNames1,imageFileNames2);
+   [imagePoints boardSize imagesUsed] = detectCheckerboardPoints(images1,images2);
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>imagePoints:</term>
+      <listitem><para> Matrix containing checkerboard points.</para></listitem></varlistentry>
+   <varlistentry><term>boardSize:</term>
+      <listitem><para> Matrix (1x2) containing boardSize</para></listitem></varlistentry>
+   <varlistentry><term>imagesUsed:</term>
+      <listitem><para> Images used to detect checkerboard in case of multiple input images</para></listitem></varlistentry>
+   <varlistentry><term>imageFileNames:</term>
+      <listitem><para> Path to image files</para></listitem></varlistentry>
+   <varlistentry><term>images:</term>
+      <listitem><para> Input images</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+This function detects a checkerboard in an image and returns the points of the checkeboard corners.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+[imagePoints boardSize imagesUsed] = detectCheckerboardPoints(imageFileNames);
+
+[imagePoints boardSize imagesUsed] = detectCheckerboardPoints(images1,images2);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Rohit Suri</member>
+   </simplelist>
+</refsection>
+</refentry>

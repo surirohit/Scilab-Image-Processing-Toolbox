@@ -1,0 +1,91 @@
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>bagOfFeatures</title>
+    <style type="text/css" media="all">
+      @import url("scilab_code.css");
+      @import url("xml_code.css");
+      @import url("c_code.css");
+      @import url("style.css");
+    </style>
+  </head>
+  <body>
+    <div class="manualnavbar">
+    <table width="100%"><tr>
+      <td width="30%">
+    	<span class="previous"><a href="section_ef602accd347244c1dde4e3c8c67ad87.html">&lt;&lt; Image Processing Toolbox</a></span>
+
+      </td>
+      <td width="40%" class="center">
+      	<span class="top"><a href="section_ef602accd347244c1dde4e3c8c67ad87.html">Image Processing Toolbox</a></span>
+
+      </td>
+      <td width="30%" class="next">
+      	<span class="next"><a href="corner.html">corner &gt;&gt;</a></span>
+
+      </td>
+    </tr></table>
+      <hr />
+    </div>
+
+
+
+    <span class="path"><a href="index.html">Image Processing Toolbox</a> &gt;&gt; <a href="section_ef602accd347244c1dde4e3c8c67ad87.html">Image Processing Toolbox</a> &gt; bagOfFeatures</span>
+
+    <br /><br />
+    <div class="refnamediv"><h1 class="refname">bagOfFeatures</h1>
+    <p class="refpurpose">This function is used to create a Bag-of-Words model (BoW model).</p></div>
+
+
+<div class="refsynopsisdiv"><h3 class="title">Calling Sequence</h3>
+   <div class="synopsis"><pre><span class="default">bag</span><span class="default"> = </span><span class="functionid">bagOfFeatures</span><span class="default">(</span><span class="default">imgSet</span><span class="default">);</span>
+<span class="default">bag</span><span class="default"> = </span><span class="functionid">bagOfFeatures</span><span class="default">(</span><span class="default">imgSet</span><span class="default">, </span><span class="default">Name</span><span class="default">, </span><span class="default">Value</span><span class="default">, ...);</span></pre></div></div>
+
+<div class="refsection"><h3 class="title">Parameters</h3>
+   <dl><dt><span class="term">bag:</span>
+      <dd><p class="para">Bag of visual words</p></dd></dt>
+   <dt><span class="term">imgSet:</span>
+      <dd><p class="para">An imageSet structure</p></dd></dt>
+   <dt><span class="term">VocabularySize:</span>
+      <dd><p class="para">(Optional) Number of visual words (Default- 500)</p></dd></dt>
+   <dt><span class="term">StrongestFeatures:</span>
+      <dd><p class="para">(Optional) Fraction of strongest features (Default- 1.0)</p></dd></dt>
+   <dt><span class="term">Upright:</span>
+      <dd><p class="para">(Optional) Orientation of SURF feature vector (Default- true)</p></dd></dt>
+   <dt><span class="term">Verbose:</span>
+      <dd><p class="para">(Optional) Enable progress display to screen (Default- true)</p></dd></dt></dl></div>
+
+<div class="refsection"><h3 class="title">Description</h3>
+   <p class="para">BoW model is applied to classify images by treating image features as words. The bagOfFeatures object contains a bag of visual words that help in image classification.</p>
+   <p class="para"></p></div>
+
+<div class="refsection"><h3 class="title">Examples</h3>
+   <div class="programlisting"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">imgSet</span> <span class="scilaboperator">=</span> <span class="scilabid">imageSet</span><span class="scilabopenclose">(</span><span class="scilabid">directory</span><span class="scilabdefault">,</span><span class="scilabstring">&#0039;</span><span class="scilabstring">recursive</span><span class="scilabstring">&#0039;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabopenclose">[</span><span class="scilabid">trainingSet</span> <span class="scilabid">testSet</span><span class="scilabopenclose">]</span> <span class="scilaboperator">=</span> <span class="scilabid">partition</span><span class="scilabopenclose">(</span><span class="scilabid">imgSet</span><span class="scilabdefault">,</span><span class="scilabopenclose">[</span><span class="scilabnumber">0.8</span><span class="scilabopenclose">]</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabid">bag</span> <span class="scilaboperator">=</span> <span class="scilabid">bagOfFeatures</span><span class="scilabopenclose">(</span><span class="scilabid">trainingSet</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
+
+<div class="refsection"><h3 class="title">Authors</h3>
+   <ul class="itemizedlist"><li class="member">Rohit Suri</li>
+   <li class="member">Umang Agrawal</li></ul></div>
+    <br />
+
+    <div class="manualnavbar">
+    <table width="100%">
+    <tr><td colspan="3" class="next"><a href="http://bugzilla.scilab.org/enter_bug.cgi?product=Scilab%20software&component=Documentation%20pages" class="ulink">Report an issue</a></td></tr>
+<tr>
+      <td width="30%">
+    	<span class="previous"><a href="section_ef602accd347244c1dde4e3c8c67ad87.html">&lt;&lt; Image Processing Toolbox</a></span>
+
+      </td>
+      <td width="40%" class="center">
+      	<span class="top"><a href="section_ef602accd347244c1dde4e3c8c67ad87.html">Image Processing Toolbox</a></span>
+
+      </td>
+      <td width="30%" class="next">
+      	<span class="next"><a href="corner.html">corner &gt;&gt;</a></span>
+
+      </td>
+    </tr></table>
+      <hr />
+    </div>
+  </body>
+</html>

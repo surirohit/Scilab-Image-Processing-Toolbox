@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from corner.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="corner" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>corner</refname>
+    <refpurpose>This function is used to find corner points in an image.</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Calling Sequence</title>
+   <synopsis>
+   c = corner(I);
+   c = corner(I, Name, Value, ...);
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>c:</term>
+      <listitem><para> Structure of corner points</para></listitem></varlistentry>
+   <varlistentry><term>I:</term>
+      <listitem><para> Input image to corner()</para></listitem></varlistentry>
+   <varlistentry><term>MinQuality:</term>
+      <listitem><para> (Optional) Minimum accepted quality of corners (Default- 0.01)</para></listitem></varlistentry>
+   <varlistentry><term>FilterSize:</term>
+      <listitem><para> (Optional) Dimension of Gaussian Filter (Default: 5)</para></listitem></varlistentry>
+   <varlistentry><term>ROI:</term>
+      <listitem><para> (Optional) Rectangular region for corner detection</para></listitem></varlistentry>
+   <varlistentry><term>SensitivityFactor:</term>
+      <listitem><para> (Optional) SensitivityFactor of Harris algorithm (Default- 0.04)</para></listitem></varlistentry>
+   <varlistentry><term>Method:</term>
+      <listitem><para> (Optional) Method used to detect corner points- Harris or MinimumEigenValue (Default- Harris)</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+This function detects corners in an image I. These corner points are used to extract features and hence recognize the contents of an image.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+I = imread('sample.jpg');
+c = corner(I);
+
+I = imread('sample.jpg');
+c = corner(I,'Method','MinimumEigenValue');
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Rohit Suri</member>
+   <member>Sridhar Reddy</member>
+   </simplelist>
+</refsection>
+</refentry>

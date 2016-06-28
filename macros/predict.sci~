@@ -1,0 +1,8 @@
+function classiferDescription = predict(Categoryclassifier, image)
+	
+	image_list = mattolist(image)
+	Categoryclassifier_list = classifierToList(Categoryclassifier);
+	
+	classifierDescription = opencv_predict(Categoryclassifier, image_list)
+	
+endfunction

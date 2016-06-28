@@ -1,0 +1,8 @@
+function confMat = evaluate(classifier, imageSet)
+	
+	classifier_list = classifierToList(classifier)
+	imageSet_list = imgSetToList(imageSet)
+	
+	confMat = opencv_evaluate(classifier_list, imageSet_list)	
+	
+endfunction

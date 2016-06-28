@@ -44,5 +44,22 @@ endfunction
 main_builder();
 exec macros/imshow.sci;
 exec macros/show.sci;
+exec macros/bagOfFeatures.sci;
+exec macros/corner.sci;
+exec macros/detectCheckerboardPoints.sci;
+exec macros/detectHarrisFeatures.sci;
+exec macros/detectMinEigenFeatures.sci;
+exec macros/evaluate.sci;
+exec macros/imageSet.sci;
+exec macros/imageSetToList.sci;
+exec macros/imread.sci;
+exec macros/mattolist.sci;
+exec macros/ocr.sci;
+exec macros/partition.sci;
+exec macros/predict.sci;
+exec macros/trainImageCategoryClassifier.sci;
+exec macros/classifierToList.sci;
+exec macros/bagStructToList.sci;
+
 clear main_builder; // remove main_builder on stack
 // =============================================================================

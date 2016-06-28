@@ -1,0 +1,92 @@
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>partition</title>
+    <style type="text/css" media="all">
+      @import url("scilab_code.css");
+      @import url("xml_code.css");
+      @import url("c_code.css");
+      @import url("style.css");
+    </style>
+  </head>
+  <body>
+    <div class="manualnavbar">
+    <table width="100%"><tr>
+      <td width="30%">
+    	<span class="previous"><a href="ocr.html">&lt;&lt; ocr</a></span>
+
+      </td>
+      <td width="40%" class="center">
+      	<span class="top"><a href="section_ef602accd347244c1dde4e3c8c67ad87.html">Image Processing Toolbox</a></span>
+
+      </td>
+      <td width="30%" class="next">
+      	<span class="next"><a href="predict.html">predict &gt;&gt;</a></span>
+
+      </td>
+    </tr></table>
+      <hr />
+    </div>
+
+
+
+    <span class="path"><a href="index.html">Image Processing Toolbox</a> &gt;&gt; <a href="section_ef602accd347244c1dde4e3c8c67ad87.html">Image Processing Toolbox</a> &gt; partition</span>
+
+    <br /><br />
+    <div class="refnamediv"><h1 class="refname">partition</h1>
+    <p class="refpurpose">This function is used to split an imageSet.</p></div>
+
+
+<div class="refsynopsisdiv"><h3 class="title">Calling Sequence</h3>
+   <div class="synopsis"><pre><span class="default">[</span><span class="default">set1</span> <span class="default">set2</span><span class="default"> ... </span><span class="default">setN</span><span class="default">] = </span><span class="functionid">partition</span><span class="default">(</span><span class="default">imgSet</span><span class="default">, </span><span class="default">groupSizes</span><span class="default">)</span>
+<span class="default">[</span><span class="default">set1</span> <span class="default">set2</span><span class="default"> ... </span><span class="default">setN</span><span class="default">] = </span><span class="functionid">partition</span><span class="default">(</span><span class="default">imgSet</span><span class="default">, </span><span class="default">groupPercentages</span><span class="default">)</span>
+<span class="default">[</span><span class="default">set1</span> <span class="default">set2</span><span class="default"> ... </span><span class="default">setN</span><span class="default">] = </span><span class="functionid">partition</span><span class="default">(..., </span><span class="default">method</span><span class="default">)</span></pre></div></div>
+
+<div class="refsection"><h3 class="title">Parameters</h3>
+   <dl><dt><span class="term">set:</span>
+      <dd><p class="para">Output imageSet structure</p></dd></dt>
+   <dt><span class="term">imgSet:</span>
+      <dd><p class="para">Input imageSet to be split</p></dd></dt>
+   <dt><span class="term">groupSizes:</span>
+      <dd><p class="para">Matrix that specifies size of output sets</p></dd></dt>
+   <dt><span class="term">groupPercentages:</span>
+      <dd><p class="para">Matrix that specifies percentage content of each output set</p></dd></dt>
+   <dt><span class="term">method:</span>
+      <dd><p class="para">(Optional) Determines whether split is &#0039;sequential&#0039; or &#0039;randomized&#0039; (Default: &#0039;sequential&#0039;)</p></dd></dt></dl></div>
+
+<div class="refsection"><h3 class="title">Description</h3>
+   <p class="para">This function splits an imageSet into two or more imageSets on the basis of the groupSizes or groupPercentages provided.</p>
+   <p class="para"></p></div>
+
+<div class="refsection"><h3 class="title">Examples</h3>
+   <div class="programlisting"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">imgSet</span> <span class="scilaboperator">=</span> <span class="scilabid">imageSet</span><span class="scilabopenclose">(</span><span class="scilabid">directory</span><span class="scilabdefault">,</span><span class="scilabstring">&#0039;</span><span class="scilabstring">recursive</span><span class="scilabstring">&#0039;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabopenclose">[</span><span class="scilabid">trainingSet</span> <span class="scilabid">testSet</span><span class="scilabopenclose">]</span> <span class="scilaboperator">=</span> <span class="scilabid">partition</span><span class="scilabopenclose">(</span><span class="scilabid">imgSet</span><span class="scilabdefault">,</span><span class="scilabopenclose">[</span><span class="scilabnumber">0.8</span><span class="scilabopenclose">]</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+
+<span class="scilabid">imgSet</span> <span class="scilaboperator">=</span> <span class="scilabid">imageSet</span><span class="scilabopenclose">(</span><span class="scilabid">directory</span><span class="scilabdefault">,</span><span class="scilabstring">&#0039;</span><span class="scilabstring">recursive</span><span class="scilabstring">&#0039;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabopenclose">[</span><span class="scilabid">trainingSet</span> <span class="scilabid">testSet</span><span class="scilabopenclose">]</span> <span class="scilaboperator">=</span> <span class="scilabid">partition</span><span class="scilabopenclose">(</span><span class="scilabid">imgSet</span><span class="scilabdefault">,</span><span class="scilabopenclose">[</span><span class="scilabnumber">5</span><span class="scilabopenclose">]</span><span class="scilabdefault">,</span> <span class="scilabstring">&#0039;</span><span class="scilabstring">randomized</span><span class="scilabstring">&#0039;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
+
+<div class="refsection"><h3 class="title">Authors</h3>
+   <ul class="itemizedlist"><li class="member">Rohit Suri</li>
+   <li class="member">Umang Agrawal</li></ul></div>
+    <br />
+
+    <div class="manualnavbar">
+    <table width="100%">
+    <tr><td colspan="3" class="next"><a href="http://bugzilla.scilab.org/enter_bug.cgi?product=Scilab%20software&component=Documentation%20pages" class="ulink">Report an issue</a></td></tr>
+<tr>
+      <td width="30%">
+    	<span class="previous"><a href="ocr.html">&lt;&lt; ocr</a></span>
+
+      </td>
+      <td width="40%" class="center">
+      	<span class="top"><a href="section_ef602accd347244c1dde4e3c8c67ad87.html">Image Processing Toolbox</a></span>
+
+      </td>
+      <td width="30%" class="next">
+      	<span class="next"><a href="predict.html">predict &gt;&gt;</a></span>
+
+      </td>
+    </tr></table>
+      <hr />
+    </div>
+  </body>
+</html>

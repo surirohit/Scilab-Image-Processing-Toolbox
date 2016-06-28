@@ -5,7 +5,7 @@ Author : Rohit Suri
 #include <iostream>
 #include <stdlib.h>
 #include <time.h>
-using namespace std;
+using namespace std; 
 extern "C"
 {
     #include "api_scilab.h"
@@ -13,7 +13,7 @@ extern "C"
     #include "BOOL.h"
     #include <localization.h>
     #include "sciprint.h"
-
+    
     /* Calling syntax: [set1,set2,...,setN] = partition(imgSet,groupSizes)
                        [set1,set2,...,setN] = partition(imgSet,groupPercentages)
                        [set1,set2,...,setN] = partition(___,method)                   */
@@ -27,20 +27,21 @@ extern "C"
         }
         return sum;
     }
-
+    
     int opencv_partition(char *fname, unsigned long fname_len)
     {
         // Error management variables
-        SciErr sciErr;
-
+        SciErr sciErr; 
+        
         //------Local variables------//
+        int *parentAddr = NULL;
         int *piAddr = NULL;
         int *piLen = NULL;
         int *piChild = NULL;
         int *piGrandChild = NULL;
         char **pstData = NULL;
         int iRows, iCols;
-
+        
         char *objectType = "imageSet";
         bool randomized = 0; // 0 for sequential and  1 for randomized method
         bool sizeProvided; // 0 if percentage and 1 if size provided
@@ -60,20 +61,20 @@ extern "C"
         //------Check number of parameters------//
         CheckInputArgument(pvApiCtx, 2, 3);
         // Output Arguments checked later
-
+        
         //------Get input arguments------//
         sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
         if (sciErr.iErr)
         {
-            printError(&sciErr, 0);
-            return 0;
+            printError(&sciErr, 0); 
+            return 0; 
         }
         if(!isListType(pvApiCtx, piAddr))
         {
             Scierror(999, "Error: Invalid first argument. List Expected.\n");
             return 0;
         }
-
+        
         // Extracting object type and checking if type is imageSet
         sciErr = getMatrixOfStringInList(pvApiCtx, piAddr, 1, &iRows, &iCols, NULL, NULL);
 		if(sciErr.iErr)
@@ -110,7 +111,7 @@ extern "C"
             Scierror(999, "Error: The input argument is not of type imageSet.\n");
             return 0;
         }
-
+        
         // Extracting Description attribute of input argument
         sciErr = getMatrixOfStringInList(pvApiCtx, piAddr, 2, &iRows, &iCols, NULL, NULL);
 		if(sciErr.iErr)
@@ -142,7 +143,7 @@ extern "C"
 			return 0;
 		}
         descriptionCount = iRows;
-
+        
         // Extracting Count attribute of input argument
         sciErr = getMatrixOfInteger32InList(pvApiCtx, piAddr, 3, &iRows, &iCols, &count);
         if(sciErr.iErr)
@@ -150,7 +151,7 @@ extern "C"
 			printError(&sciErr, 0);
 			return 0;
 		}
-
+        
         location = (char***) malloc(sizeof(char**) * descriptionCount);
         sciErr = getListItemAddress(pvApiCtx, piAddr, 4, &piChild);
         if(sciErr.iErr)
@@ -166,23 +167,23 @@ extern "C"
 		    	printError(&sciErr, 0);
 		    	return 0;
 		    }
-
+        
 		    piLen = (int*)malloc(sizeof(int) * iRows * iCols);
-
+        
 		    sciErr = getMatrixOfStringInList(pvApiCtx, piChild, iter, &iRows, &iCols, piLen, NULL);
 		    if(sciErr.iErr)
 		    {
 		    	printError(&sciErr, 0);
 		    	return 0;
 		    }
-
+        
 		    location[iter-1] = (char**)malloc(sizeof(char*) * iRows * iCols);
-
+        
 		    for(int colIter = 0 ; colIter < iRows * iCols ; colIter++)
 		    {
 		    	location[iter-1][colIter] = (char*)malloc(sizeof(char) * (piLen[colIter] + 1));//+ 1 for null termination
 		    }
-
+        
 		    sciErr = getMatrixOfStringInList(pvApiCtx, piChild, iter, &iRows, &iCols, piLen, location[iter-1]);
 		    if(sciErr.iErr)
 		    {
@@ -196,7 +197,7 @@ extern "C"
 			printError(&sciErr, 0);
 			return 0;
 		}
-
+        
         sciErr = getMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &groupSizesOrPercentages);
         if(sciErr.iErr)
 		{
@@ -215,45 +216,45 @@ extern "C"
         }
         partitionCount = iCols+1;
         CheckOutputArgument(pvApiCtx, 1, partitionCount);
-
+        
         if(*getNbInputArgument(pvApiCtx) == 3)
         {
-            sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddr);
+            sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddr); 
             if (sciErr.iErr)
             {
-                printError(&sciErr, 0);
-                return 0;
+                printError(&sciErr, 0); 
+                return 0; 
             }
 
-            sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, NULL, NULL);
+            sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, NULL, NULL); 
             if (sciErr.iErr)
             {
-                printError(&sciErr, 0);
-                return 0;
+                printError(&sciErr, 0); 
+                return 0; 
             }
-
-            piLen = (int*) malloc(sizeof(int) * iRows * iCols);
-
-            sciErr = getMatrixOfString(pvApiCtx,  piAddr,  &iRows,  &iCols,  piLen,  NULL);
+            
+            piLen = (int*) malloc(sizeof(int) * iRows * iCols); 
+            
+            sciErr = getMatrixOfString(pvApiCtx,  piAddr,  &iRows,  &iCols,  piLen,  NULL); 
             if (sciErr.iErr)
             {
-                printError(&sciErr, 0);
-                return 0;
+                printError(&sciErr, 0); 
+                return 0; 
             }
-
-            pstData = (char**) malloc(sizeof(char*) * iRows * iCols);
+            
+            pstData = (char**) malloc(sizeof(char*) * iRows * iCols); 
             for(int iterPstData = 0; iterPstData < iRows * iCols; iterPstData++)
             {
-                pstData[iterPstData] = (char*) malloc(sizeof(char) * piLen[iterPstData] + 1);
+                pstData[iterPstData] = (char*) malloc(sizeof(char) * piLen[iterPstData] + 1); 
             }
-
-            sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, piLen, pstData);
+            
+            sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, piLen, pstData); 
             if (sciErr.iErr)
             {
-                printError(&sciErr, 0);
-                return 0;
+                printError(&sciErr, 0); 
+                return 0; 
             }
-
+            
             if(strcmp("sequential",pstData[0])==0)
             {
                 randomized = 0;
@@ -268,7 +269,7 @@ extern "C"
                 return 0;
             }
         }
-
+        
         sumOfSizesOrPercentages = findSum(groupSizesOrPercentages,partitionCount);
         if(groupSizesOrPercentages[0]>0 && groupSizesOrPercentages[0]<1)
         {
@@ -280,7 +281,7 @@ extern "C"
         }
         else
         {
-            Scierror(999, "Error: Please enter positive values for groupSizes argument.\n");
+            Scierror(999, "Error: Please enter positive values groupSizes argument.\n");
             return 0;
         }
         for(int iter = 0; iter<partitionCount-1;iter++)
@@ -295,7 +296,7 @@ extern "C"
                 Scierror(999, "Error: Please enter proper groupPercentages argument. Values should lie between 0-1.\n");
                 return 0;
             }
-            groupSizesOrPercentagesSum+=groupSizesOrPercentages[iter];
+            groupSizesOrPercentagesSum+=groupSizesOrPercentages[iter]; 
         }
         if(!sizeProvided && groupSizesOrPercentagesSum>1)
         {
@@ -313,7 +314,7 @@ extern "C"
                 }
             }
         }
-
+        
         //------Actual processing------//
         double temp;
         countOutput = (int**) malloc(sizeof(int*) * partitionCount);
@@ -321,7 +322,7 @@ extern "C"
         locationIndex = (int**) malloc(sizeof(int*) * descriptionCount);
         for(int iter = 0 ; iter<descriptionCount; iter++)
         {
-            locationIndex[iter] = (int*) malloc(sizeof(int) * count[iter]);
+            locationIndex[iter] = (int*) malloc(sizeof(int) * count[iter]); 
             tempCount[iter] = count[iter];
         }
         for(int iter=0;iter<partitionCount-1; iter++)
@@ -362,7 +363,7 @@ extern "C"
                         zeroWarning = 1;
                     }
                     countOutput[iter][iter2] = temp;
-                    tempCount[iter2] -= temp;
+                    tempCount[iter2] -= temp; 
                 }
             }
         }
@@ -422,38 +423,44 @@ extern "C"
         {
             sciprint("Warning: One or more sets may have zero images.\n");
         }
-        //------Create output arguments------//
-        for(int iter=1;iter<=partitionCount;iter++)
-        {
-            sciErr = createList(pvApiCtx, nbInputArgument(pvApiCtx) + iter, 4, &piAddr);
+        sciErr = createList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, partitionCount, &parentAddr);
 	        if(sciErr.iErr)
 	        {
 		        printError(&sciErr, 0);
 		        return 0;
 	        }
-            sciErr = createMatrixOfStringInList(pvApiCtx, nbInputArgument(pvApiCtx)+iter, piAddr, 1, 1, 1, &objectType);
+        //------Create output arguments------//
+        for(int iter=1;iter<=partitionCount;iter++)
+        {
+            sciErr = createListInList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, parentAddr, iter, 4, &piAddr);
+	        if(sciErr.iErr)
+	        {
+		        printError(&sciErr, 0);
+		        return 0;
+	        }
+            sciErr = createMatrixOfStringInList(pvApiCtx, nbInputArgument(pvApiCtx)+1, piAddr, 1, 1, 1, &objectType);
             if(sciErr.iErr)
             {
-                printError(&sciErr, 0);
-                return 0;
+                printError(&sciErr, 0); 
+                return 0; 
             }
-            sciErr = createMatrixOfStringInList(pvApiCtx, nbInputArgument(pvApiCtx)+iter, piAddr, 2, descriptionCount, 1, description);
+            sciErr = createMatrixOfStringInList(pvApiCtx, nbInputArgument(pvApiCtx)+1, piAddr, 2, descriptionCount, 1, description); 
             if(sciErr.iErr)
             {
-                printError(&sciErr, 0);
-                return 0;
+                printError(&sciErr, 0); 
+                return 0; 
             }
-            sciErr = createMatrixOfInteger32InList(pvApiCtx, nbInputArgument(pvApiCtx)+iter, piAddr, 3, descriptionCount, 1, countOutput[iter-1]);
+            sciErr = createMatrixOfInteger32InList(pvApiCtx, nbInputArgument(pvApiCtx)+1, piAddr, 3, descriptionCount, 1, countOutput[iter-1]);
             if(sciErr.iErr)
             {
-                printError(&sciErr, 0);
-                return 0;
+                printError(&sciErr, 0); 
+                return 0; 
             }
-            sciErr = createListInList(pvApiCtx, nbInputArgument(pvApiCtx)+iter, piAddr, 4, descriptionCount, &piChild);
+            sciErr = createListInList(pvApiCtx, nbInputArgument(pvApiCtx)+1, piAddr, 4, descriptionCount, &piChild);
             if(sciErr.iErr)
             {
-                printError(&sciErr, 0);
-                return 0;
+                printError(&sciErr, 0); 
+                return 0; 
             }
             locationOutput = (char***) malloc(sizeof(char**) * descriptionCount);
             for(int i=0;i<descriptionCount;i++)
@@ -469,14 +476,13 @@ extern "C"
                         index++;
                     }
                 }
-                sciErr = createMatrixOfStringInList(pvApiCtx, nbInputArgument(pvApiCtx)+iter, piChild, i+1, 1, countOutput[iter-1][i], locationOutput[i]);
+                sciErr = createMatrixOfStringInList(pvApiCtx, nbInputArgument(pvApiCtx)+1, piChild, i+1, countOutput[iter-1][i], 1, locationOutput[i]);
             }
-            AssignOutputVariable(pvApiCtx, iter) = nbInputArgument(pvApiCtx)+iter;
         }
         //------Return Arguments------//
-
-        ReturnArguments(pvApiCtx);
-        return 0;
+        AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx)+1;
+        ReturnArguments(pvApiCtx); 
+        return 0; 
     }
 /* ==================================================================== */
 }

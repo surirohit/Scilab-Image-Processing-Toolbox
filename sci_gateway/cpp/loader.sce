@@ -11,18 +11,17 @@ if bOK then
 end
 //
 list_functions = [ 'opencv_imread';
-                   'imageSet';
-                   'partition';
-                   'trainImageCategoryClassifier';
-                   'bagOfFeatures';
-                   'imageCategoryClassifier';
-                   'evaluate';
-                   'detectCheckerboardPoints';
-                   'ForegroundDetector';
-                   'VideoReader';
-                   'hasFrame';
-                   'readFrame';
-                   'readForegroundMask';
+                   'opencv_detectHarrisFeatures';
+                   'opencv_detectMinEigenFeatures';
+                   'opencv_corner';
+                   'opencv_ocr';
+                   'opencv_imageSet';
+                   'opencv_partition';
+                   'opencv_trainImageCategoryClassifier';
+                   'opencv_bagOfFeatures';
+                   'opencv_predict';
+                   'opencv_evaluate';
+                   'opencv_detectCheckerboardPoints';
 ];
 addinter(libskeleton_imagepr_path + filesep() + 'libskeleton_imageprocessing' + getdynlibext(), 'libskeleton_imageprocessing', list_functions);
 // remove temp. variables on stack

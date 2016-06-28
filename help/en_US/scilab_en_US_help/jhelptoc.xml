@@ -3,24 +3,25 @@
 <toc version="1.0">
 <tocitem target="index" text="Image Processing Toolbox">
 <tocitem target="section_ef602accd347244c1dde4e3c8c67ad87" text="Image Processing Toolbox">
-<tocitem target="blur" text="blur"/>
-<tocitem target="canny" text="canny"/>
-<tocitem target="cornerEigenValAndVecs" text="cornerEigenValsAndVecs"/>
-<tocitem target="cornerHarris" text="CornerHarris"/>
-<tocitem target="filter2D" text="filter2D"/>
-<tocitem target="gaussianblur" text="gaussianblur"/>
-<tocitem target="getTextSize" text="getTextSize"/>
-<tocitem target="houghlines" text="HoughLines"/>
-<tocitem target="houghlinesp" text="HoughLinesP"/>
-<tocitem target="im2double" text="im2double"/>
-<tocitem target="imcontrast" text="imcontrast"/>
-<tocitem target="imcrop" text="imcrop"/>
-<tocitem target="imread" text="imread"/>
-<tocitem target="imresize" text="imresize"/>
-<tocitem target="imsharpen" text="imsharpen"/>
-<tocitem target="imwrite" text="imwrite"/>
-<tocitem target="montage" text="montage"/>
-<tocitem target="undistort" text="Undistort"/>
+<tocitem target="bagOfFeatures" text="bagOfFeatures"/>
+<tocitem target="corner" text="corner"/>
+<tocitem target="detectCheckerboardPoints" text="detectCheckerboardPoints"/>
+<tocitem target="detectHarrisFeatures" text="detectHarrisFeatures"/>
+<tocitem target="detectMinEigenFeatures" text="detectMinEigenFeatures"/>
+<tocitem target="evaluate" text="evaluate"/>
+<tocitem target="evaluateImageRetrieval" text="evaluateImageRetrieval"/>
+<tocitem target="imageSet" text="imageSet"/>
+<tocitem target="imshow" text="imshow"/>
+<tocitem target="mattolist" text="mattolist"/>
+<tocitem target="ocr" text="ocr"/>
+<tocitem target="partition" text="partition"/>
+<tocitem target="predict" text="predict"/>
+<tocitem target="retrieveImages" text="retrieveImages"/>
+<tocitem target="sampletry" text="sampletry"/>
+<tocitem target="selectStrongestBbox" text="selectStrongestBbox"/>
+<tocitem target="show" text="show"/>
+<tocitem target="trainCascaseObjectDetector" text="trainCascaseObjectDetector"/>
+<tocitem target="trainImageCategoryClassifier" text="trainImageCategoryClassifier"/>
 </tocitem>
 </tocitem>
 </toc>

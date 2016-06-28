@@ -16,7 +16,6 @@ extern "C"
     #include "BOOL.h"
     #include <localization.h>
     #include "sciprint.h"
-    #include "../common.h"
     int opencv_evaluate(char *fname, unsigned long fname_len)
     {
         // Error management variables
@@ -29,7 +28,7 @@ extern "C"
         BOWImgDescriptorExtractor bowDE(extractor, matcher);
         SurfFeatureDetector detector(1, 4, 2, 1, int(upright));
         char *classifierLocation = NULL;
-        Mat dictionary,features;
+        Mat dictionary,inp,features;
         double response;
         vector<KeyPoint> keyPoints;
         CvSVM svm;
@@ -39,17 +38,21 @@ extern "C"
         int iRows, iCols;
         char **pstData = NULL;
         int *piLen = NULL;
+        int *count = NULL;
         char **classifierDescription = NULL;
         int classifierDescriptionCount;
+        char **description = NULL;
+        char ***location = NULL;
         char *bagOfFeaturesLocation = NULL;
         int descriptionCount;
-        Mat input;
+        double *confMatrix = NULL;
+        char *fileName = NULL;
+        double avgAccuracy = 0;
         //------Check number of parameters------//
         CheckInputArgument(pvApiCtx, 2, 2);
         CheckOutputArgument(pvApiCtx, 1, 1);
 
         //------Get input arguments------//
-        retrieveImage(input,2);
         sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
         if (sciErr.iErr)
         {
@@ -196,18 +199,210 @@ extern "C"
             printError(&sciErr, 0);
             return 0;
         }
+        classifierDescriptionCount = iRows;
+        // Second Argument
+        sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
+        if(!isListType(pvApiCtx, piAddr))
+        {
+            Scierror(999, "Error: The input argument #2 is not of type imageSet.\n");
+            return 0;
+        }
+
+        // Extracting object type and checking if type is imageSet
+        sciErr = getMatrixOfStringInList(pvApiCtx, piAddr, 1, &iRows, &iCols, NULL, NULL);
+        if(sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
+
+        piLen = (int*)malloc(sizeof(int) * iRows * iCols);
+
+        sciErr = getMatrixOfStringInList(pvApiCtx, piAddr, 1, &iRows, &iCols, piLen, NULL);
+        if(sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
+
+        pstData = (char**)malloc(sizeof(char*) * iRows * iCols);
+
+        for(int iter = 0 ; iter < iRows * iCols ; iter++)
+        {
+            pstData[iter] = (char*)malloc(sizeof(char) * (piLen[iter] + 1));//+ 1 for null termination
+        }
+
+        sciErr = getMatrixOfStringInList(pvApiCtx, piAddr, 1, &iRows, &iCols, piLen, pstData);
+        if(sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
+
+        if(!(strcmp(pstData[0],"imageSet")==0))
+        {
+            Scierror(999, "Error: The input argument #2 is not of type imageSet.\n");
+            return 0;
+        }
+
+        // Extracting Description attribute of input argument
+        sciErr = getMatrixOfStringInList(pvApiCtx, piAddr, 2, &iRows, &iCols, NULL, NULL);
+        if(sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
+
+        piLen = (int*)malloc(sizeof(int) * iRows * iCols);
+
+        sciErr = getMatrixOfStringInList(pvApiCtx, piAddr, 2, &iRows, &iCols, piLen, NULL);
+        if(sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
+
+        description = (char**)malloc(sizeof(char*) * iRows * iCols);
+
+        for(int iter = 0 ; iter < iRows * iCols ; iter++)
+        {
+            description[iter] = (char*)malloc(sizeof(char) * (piLen[iter] + 1));//+ 1 for null termination
+        }
+
+        sciErr = getMatrixOfStringInList(pvApiCtx, piAddr, 2, &iRows, &iCols, piLen, description);
+        if(sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
+        descriptionCount = iRows;
+
+        // Extracting Count attribute of input argument
+        sciErr = getMatrixOfInteger32InList(pvApiCtx, piAddr, 3, &iRows, &iCols, &count);
+        if(sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
+
+        location = (char***) malloc(sizeof(char**) * descriptionCount);
+        sciErr = getListItemAddress(pvApiCtx, piAddr, 4, &piChild);
+        if(sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
+        for(int iter = 1; iter<=descriptionCount; iter++)
+        {
+            sciErr = getMatrixOfStringInList(pvApiCtx, piChild, iter, &iRows, &iCols, NULL, NULL);
+            if(sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 0;
+            }
+
+            piLen = (int*)malloc(sizeof(int) * iRows * iCols);
+
+            sciErr = getMatrixOfStringInList(pvApiCtx, piChild, iter, &iRows, &iCols, piLen, NULL);
+            if(sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 0;
+            }
+
+            location[iter-1] = (char**)malloc(sizeof(char*) * iRows * iCols);
+
+            for(int colIter = 0 ; colIter < iRows * iCols ; colIter++)
+            {
+                location[iter-1][colIter] = (char*)malloc(sizeof(char) * (piLen[colIter] + 1));//+ 1 for null termination
+            }
+
+            sciErr = getMatrixOfStringInList(pvApiCtx, piChild, iter, &iRows, &iCols, piLen, location[iter-1]);
+            if(sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 0;
+            }
+        }
         //------Actual processing------//
+        if(descriptionCount != classifierDescriptionCount)
+        {
+            Scierror(999, "Error: The input imageSet does not match the classifier's training set.\n");
+            return 0;
+        }
+        for(int i=0; i<descriptionCount; i++)
+        {
+            if(strcmp(classifierDescription[i],description[i])!=0)
+            {
+                Scierror(999, "Error: The input imageSet does not match the classifier's training set.\n");
+                return 0;
+            }
+        }
+        sciprint("Evaluating image category classifier for %d categories.\n",descriptionCount);
+        sciprint("--------------------------------------------------------\n\n");
+        for(int i=0;i<descriptionCount;i++)
+        {
+            sciprint("# Category %d: %s\n",i+1,description[i]);
+        }
+        sciprint("\n");
+        confMatrix = (double*) malloc(sizeof(double)*descriptionCount*descriptionCount);
+        for(int i=0;i<descriptionCount*descriptionCount;i++)
+        {
+            confMatrix[i]=0;
+        }
         FileStorage fs(bagOfFeaturesLocation, FileStorage::READ);
         fs["dictionary"] >> dictionary;
         fs.release();
         dictionarySize = dictionary.rows;
         bowDE.setVocabulary(dictionary);
         svm.load(classifierLocation);
-        detector.detect(input, keyPoints);
-        bowDE.compute(input, keyPoints, features);
-        response = svm.predict(features);
+        for(int i=0; i<descriptionCount;i++)
+        {
+            sciprint("# Evaluating %d images from category %d ...",count[i],i+1);
+            for(int j=0; j<count[i]; j++)
+            {
+                features.release();
+                keyPoints.clear();
+                fileName = location[i][j];
+                inp = imread(fileName);
+                detector.detect(inp, keyPoints);
+                bowDE.compute(inp, keyPoints, features);
+                response = svm.predict(features);
+                confMatrix[i+(int)response*descriptionCount]++;
+            }
+            sciprint("done.\n");
+        }
+        sciprint("\n");
+        sciprint("\t PREDICTED\n");
+        sciprint("KNOWN\t|");
+        for(int i=0;i<descriptionCount;i++)
+        {
+            sciprint(" %d\t",i+1);
+        }
+        sciprint("\n");
+        for(int i=0; i<descriptionCount;i++)
+        {
+            sciprint("%d\t|",i+1);
+            for(int j=0; j<descriptionCount; j++)
+            {
+                confMatrix[i+descriptionCount*j] /= count[i];
+                sciprint(" %.2f\t",confMatrix[i+descriptionCount*j]);
+            }
+            sciprint("\n");
+        }
+        sciprint("\n");
+        for(int i=0;i<descriptionCount*descriptionCount;i=i+descriptionCount+1)
+        {
+            avgAccuracy += confMatrix[i];
+        }
+        sciprint("# Average accuracy: %f\n",avgAccuracy/descriptionCount);
         //------Create output arguments------//
-        sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx)+1, 1, 1, &classifierDescription[(int)response]);
+        sciErr = createMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx)+1, descriptionCount, descriptionCount, confMatrix);
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);

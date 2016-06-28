@@ -1,7 +1,8 @@
 function[] =imshow(Image)         //retrieving list and creating 3 dimensional matrix out of it
-    dimensions=size(Image)
+    Image = mattolist(Image);
+    dimensions=size(Image);
     if dimensions==3 then 
-    [c d]=size(Image(1));
+     [c d]=size(Image(1));
      r=matrix(Image(1),c,d);
      g=matrix(Image(2),c,d);
      b=matrix(Image(3),c,d);
@@ -11,16 +12,15 @@ function[] =imshow(Image)         //retrieving list and creating 3 dimensional m
      [NumberOfRows NumberOfColumns NumberOfChannels] = size(z);
      NumberOfPixels = NumberOfRows * NumberOfColumns;
      MaxGrayValue = 2 ^ 8 - 1;
-     ColorMap = double(matrix(z, NumberOfPixels, NumberOfChannels)) ...
-           / MaxGrayValue;
+     ColorMap = double(matrix(z, NumberOfPixels, NumberOfChannels)) / MaxGrayValue;
      Img = matrix(1 : NumberOfPixels, NumberOfRows, NumberOfColumns);
-     elseif dimensions==1 then
+    elseif dimensions==1 then
      [c d]=size(Image(1));
      Img=matrix(Image(1),c,d);
      //Img=Img';
      MaxUInt8 = 2 ^ 8 - 1;
      MaximumGrayValue = MaxUInt8;
      ColorMap = graycolormap(double(MaximumGrayValue + 1));
-     end;
+    end;
      show(Img,ColorMap);
 endfunction

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from partition.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="partition" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>partition</refname>
+    <refpurpose>This function is used to split an imageSet.</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Calling Sequence</title>
+   <synopsis>
+   [set1 set2 ... setN] = partition(imgSet, groupSizes)
+   [set1 set2 ... setN] = partition(imgSet, groupPercentages)
+   [set1 set2 ... setN] = partition(..., method)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>set:</term>
+      <listitem><para> Output imageSet structure</para></listitem></varlistentry>
+   <varlistentry><term>imgSet:</term>
+      <listitem><para> Input imageSet to be split</para></listitem></varlistentry>
+   <varlistentry><term>groupSizes:</term>
+      <listitem><para> Matrix that specifies size of output sets</para></listitem></varlistentry>
+   <varlistentry><term>groupPercentages:</term>
+      <listitem><para> Matrix that specifies percentage content of each output set</para></listitem></varlistentry>
+   <varlistentry><term>method:</term>
+      <listitem><para> (Optional) Determines whether split is 'sequential' or 'randomized' (Default: 'sequential')</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+This function splits an imageSet into two or more imageSets on the basis of the groupSizes or groupPercentages provided.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+imgSet = imageSet(directory,'recursive');
+[trainingSet testSet] = partition(imgSet,[0.8]);
+
+imgSet = imageSet(directory,'recursive');
+[trainingSet testSet] = partition(imgSet,[5], 'randomized');
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Rohit Suri</member>
+   </simplelist>
+</refsection>
+</refentry>

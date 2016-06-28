@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from bagOfFeatures.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="bagOfFeatures" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>bagOfFeatures</refname>
+    <refpurpose>This function is used to create a Bag-of-Words model (BoW model).</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Calling Sequence</title>
+   <synopsis>
+   bag = bagOfFeatures(imgSet);
+   bag = bagOfFeatures(imgSet, Name, Value, ...);
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>bag:</term>
+      <listitem><para> Bag of visual words</para></listitem></varlistentry>
+   <varlistentry><term>imgSet:</term>
+      <listitem><para> An imageSet structure</para></listitem></varlistentry>
+   <varlistentry><term>VocabularySize:</term>
+      <listitem><para> (Optional) Number of visual words (Default- 500)</para></listitem></varlistentry>
+   <varlistentry><term>StrongestFeatures:</term>
+      <listitem><para> (Optional) Fraction of strongest features (Default- 1.0)</para></listitem></varlistentry>
+   <varlistentry><term>Upright:</term>
+      <listitem><para> (Optional) Orientation of SURF feature vector (Default- true)</para></listitem></varlistentry>
+   <varlistentry><term>Verbose:</term>
+      <listitem><para> (Optional) Enable progress display to screen (Default- true)</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+BoW model is applied to classify images by treating image features as words. The bagOfFeatures object contains a bag of visual words that help in image classification.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+imgSet = imageSet(directory,'recursive');
+[trainingSet testSet] = partition(imgSet,[0.8]);
+bag = bagOfFeatures(trainingSet);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Rohit Suri</member>
+   <member>Umang Agrawal</member>
+   </simplelist>
+</refsection>
+</refentry>

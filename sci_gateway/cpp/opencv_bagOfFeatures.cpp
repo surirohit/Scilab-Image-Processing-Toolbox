@@ -458,13 +458,11 @@ extern "C"
 		for( int i=0; i<descriptionCount; i++)
 		{
 			if(int(verbose))
-				sciprint("Extracting features from %d images in image set %d",count[i],i+1);
+				sciprint("Extracting features from %d images in image set %d ...",count[i],i+1);
 			key_size = 0;
 			v_key_size = 0;
 			for( int j=0; j<count[i]; j++)
 			{
-				if(int(verbose))
-					sciprint(".");
 				valid_key.clear();
 				keypoints.clear();
 				image = imread(location[i][j],0);
